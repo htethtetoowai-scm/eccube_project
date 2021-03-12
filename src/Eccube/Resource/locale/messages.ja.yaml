@@ -590,6 +590,7 @@ admin.product.product__card_title: 商品情報
 admin.product.preview: 商品を確認
 admin.product.product_id: 商品ID
 admin.product.product_id__short: ID
+admin.product.delivery_date: 希望納期
 admin.product.display_status: 公開ステータス
 admin.product.display_status__short: 公開状態
 admin.product.display_status__show: 公開

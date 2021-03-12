@@ -28,9 +28,9 @@ if (!class_exists('\Eccube\Entity\ProductCategory')) {
     class ProductCategory extends \Eccube\Entity\AbstractEntity
     {
         /**
-         * @var int
+         * @var string
          *
-         * @ORM\Column(name="product_id", type="integer", options={"unsigned":true})
+         * @ORM\Column(name="product_id", type="string", options={"unsigned":true})
          * @ORM\Id
          * @ORM\GeneratedValue(strategy="NONE")
          */
@@ -68,7 +68,7 @@ if (!class_exists('\Eccube\Entity\ProductCategory')) {
         /**
          * Set productId.
          *
-         * @param int $productId
+         * @param string $productId
          *
          * @return ProductCategory
          */
@@ -82,7 +82,7 @@ if (!class_exists('\Eccube\Entity\ProductCategory')) {
         /**
          * Get productId.
          *
-         * @return int
+         * @return string
          */
         public function getProductId()
         {
