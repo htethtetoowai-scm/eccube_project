@@ -589,6 +589,7 @@ admin.product.product: Products
 admin.product.product__card_title: Product Information
 admin.product.preview: Preview Product
 admin.product.product_id: Product ID
+admin.product.delivery_date: Delivery dates
 admin.product.product_id__short: ID
 admin.product.display_status: Display Status
 admin.product.display_status__short: Display Status
@@ -701,6 +702,8 @@ admin.product.product_csv.keyword_col: Search Keywords
 admin.product.product_csv.keyword_description: ''
 admin.product.product_csv.free_area_col: Miscellaneous
 admin.product.product_csv.free_area_description: ''
+admin.product.product_csv.delivery_date_col: Delivery dates
+admin.product.product_csv.delivery_date_description: ''
 admin.product.product_csv.delete_flag_col: Product Deletion Flag
 admin.product.product_csv.delete_flag_description: 'Specify 0: Register 1: Delete. If unspecified, it will be set to 0.'
 admin.product.product_csv.product_image_col: Product Images

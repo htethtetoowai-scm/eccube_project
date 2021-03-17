@@ -1,0 +1,347 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+
+http://www.ec-cube.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% extends 'default_frame.twig' %}
+
+{% block stylesheet %}
+    <style>
+
+        .slick-slider {
+            margin-bottom: 30px;
+        }
+
+        .slick-dots {
+            position: absolute;
+            bottom: -45px;
+            display: block;
+            width: 100%;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        .slick-dots li {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            padding: 0;
+
+            cursor: pointer;
+        }
+
+        .slick-dots li button {
+            font-size: 0;
+            line-height: 0;
+            display: block;
+            width: 20px;
+            height: 20px;
+            padding: 5px;
+            cursor: pointer;
+            color: transparent;
+            border: 0;
+            outline: none;
+            background: transparent;
+        }
+
+        .slick-dots li button:hover,
+        .slick-dots li button:focus {
+            outline: none;
+        }
+
+        .slick-dots li button:hover:before,
+        .slick-dots li button:focus:before {
+            opacity: 1;
+        }
+
+        .slick-dots li button:before {
+            content: " ";
+            line-height: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            text-align: center;
+            opacity: .25;
+            background-color: black;
+            border-radius: 50%;
+
+        }
+
+        .slick-dots li.slick-active button:before {
+            opacity: .75;
+            background-color: black;
+        }
+
+        .slick-dots li button.thumbnail img {
+            width: 0;
+            height: 0;
+        }
+
+    </style>
+{% endblock %}
+
+{% block javascript %}
+   
+    <script>
+        $(function() {
+            // bfcache無効化
+            $(window).bind('pageshow', function(event) {
+                if (event.originalEvent.persisted) {
+                    location.reload(true);
+                }
+            });
+
+            $('.item_visual').slick({
+                dots: false,
+                arrows: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        dots: true
+                    }
+                }]
+            });
+
+            $('.slideThumb').on('click', function() {
+                var index = $(this).attr('data-index');
+                $('.item_visual').slick('slickGoTo', index, false);
+            })
+        });
+    </script>
+    <script>
+        $(function() {
+            $('.add-cart').on('click', function(event) {
+                {% if form.classcategory_id1 is defined %}
+                // 規格1フォームの必須チェック
+                if ($('#classcategory_id1').val() == '__unselected' || $('#classcategory_id1').val() == '') {
+                    $('#classcategory_id1')[0].setCustomValidity('{{ '項目が選択されていません'|trans }}');
+                    return true;
+                } else {
+                    $('#classcategory_id1')[0].setCustomValidity('');
+                }
+                {% endif %}
+
+                {% if form.classcategory_id2 is defined %}
+                // 規格2フォームの必須チェック
+                if ($('#classcategory_id2').val() == '__unselected' || $('#classcategory_id2').val() == '') {
+                    $('#classcategory_id2')[0].setCustomValidity('{{ '項目が選択されていません'|trans }}');
+                    return true;
+                } else {
+                    $('#classcategory_id2')[0].setCustomValidity('');
+                }
+                {% endif %}
+
+                // 個数フォームのチェック
+                if ($('#quantity').val() < 1) {
+                    $('#quantity')[0].setCustomValidity('{{ '1以上で入力してください。'|trans }}');
+                    return true;
+                } else {
+                    $('#quantity')[0].setCustomValidity('');
+                }
+
+                event.preventDefault();
+                $form = $('#form1');
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: $form.attr('method'),
+                    data: $form.serialize(),
+                    dataType: 'json',
+                    beforeSend: function(xhr, settings) {
+                        // Buttonを無効にする
+                        $('.add-cart').prop('disabled', true);
+                    }
+                }).done(function(data) {
+                    // レスポンス内のメッセージをalertで表示
+                    $.each(data.messages, function() {
+                        $('#ec-modal-header').html(this);
+                    });
+
+                    $('.ec-modal').show()
+
+                    // カートブロックを更新する
+                    $.ajax({
+                        url: "{{ url('block_cart') }}",
+                        type: 'GET',
+                        dataType: 'html'
+                    }).done(function(html) {
+                        $('.ec-headerRole__cart').html(html);
+                    });
+                }).fail(function(data) {
+                    alert('{{ 'カートへの追加に失敗しました。'|trans }}');
+                }).always(function(data) {
+                    // Buttonを有効にする
+                    $('.add-cart').prop('disabled', false);
+                });
+            });
+        });
+
+        $('.ec-modal-overlay, .ec-modal .ec-inlineBtn--cancel').on('click', function() {
+            $('.ec-modal').hide()
+        });
+    </script>
+{% endblock %}
+{% block main %}
+
+    <div class="receipt_title">
+		{{ 'ご注文番号'|trans }}<span>{{ Order.order_no }}</span> {{ '領収書'|trans }}
+	</div>
+	
+	<div id="print">
+		<a class="btn btn-primary" href="javascript:void(0)" onclick="window.print();return false;">{{ 'このページを印刷'|trans }}</a>
+	</div>
+
+	<div class="box">
+		<div class="left">
+			<div id="name">
+				{% if Order.company_name is not empty %}{{ Order.company_name }}{% else %}{{ Order.name01 }} {{ Order.name02 }}{% endif %}　様
+			</div>
+			<div id="detail_area">
+				<div id="create_date">{{ 'ご注文日時'|trans }}：{{ Order.create_date|date("Y年m月d日") }}</div>
+				<div id="order_id">{{ 'ご注文番号'|trans }}：{{ Order.id }}</div>
+				{% if BaseInfo.option_mypage_order_status_display %}
+					<div id="order_status">{{ 'ご注文状況'|trans }}：{{ Order.CustomerOrderStatus }}</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="right">
+			<div id="info_area">
+				<div class="info_title">{{ '【発行元】 発行日'|trans }}：{{ "now"|date("Y年m月d日") }}</div>
+				<div class="address">
+					<b>{{ Order.addr01 }}</b>
+				</div>
+				<div class="shop_name">
+					株式会社TJMデザイン
+				</div>
+				<div class="tel_fax">
+          <b>TEL：{{ Order.phone_number }}</b>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+    <div class="box">
+		<div class="title_bar">{{ 'ご購入商品情報'|trans }}</div>
+		<div class="clear"></div>
+		<div class="left">
+			{% for OrderDetail in Order.MergedProductOrderItems %}
+				<div class="product_area">
+                	<div class="item">
+                    	<div class="product_name">{{ OrderDetail.product_name }}</div>
+                        <div class="classcategory">
+							{% if OrderDetail.classcategory_name1 is not empty %}
+								{{ OrderDetail.classcategory_name1 }}
+							{% endif %}
+							{% if OrderDetail.classcategory_name2 is not empty %}
+								/ {{ OrderDetail.classcategory_name2 }}
+							{% endif %}
+                        </div>
+						<div class="price">
+							{{ OrderDetail.price_inc_tax|price }} × {{ OrderDetail.quantity|number_format }}
+                            &nbsp;&nbsp;小計：{{ OrderDetail.total_price|price }}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="right">
+			<div id="price_area">
+				<div id="subtotal">{{ '小計'|trans }}：{{ Order.subtotal|price }}</div>
+				<div id="charge">{{ '手数料'|trans }}：{{ Order.charge|price }}</div>
+				<div id="delivery_total">{{ '送料合計'|trans }}：{{ Order.delivery_fee_total|price }}</div>
+        {% if Order.construction_amount > 0 %}
+        <div id="assembly_fee">{{ '組立費'|trans }}：{{ Order.construction_amount|price }}</div>
+        {% endif %}
+				{% if Order.discount > 0 %}
+					<div id="discount">{{ '値引き'|trans }}：&minus;{{ Order.discount|price }}</div>
+				{% endif %}
+				<div id="total_amount">{{ '合計'|trans }}：<strong>{{ Order.payment_total|price }}</strong><span class="small">{{ '税込'|trans }}</span></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="box">
+		<div class="title_bar">{{ '配送情報'|trans }}</div>
+		{% for Shipping in Order.Shippings %}
+			<div class="shipping_area">
+				<div class="left">
+					<div class="otodoke">{{ 'お届け先'|trans }}{% if Order.multiple %}({{ loop.index }}){% endif %}</div>
+					<div class="address">
+						{{ Shipping.name01 }}&nbsp;{{ Shipping.name02 }}&nbsp;({{ Shipping.kana01 }}&nbsp;{{ Shipping.kana02 }})<br />
+						{{ '〒'|trans }}{{ Shipping.postal_code }} {{ Shipping.Pref }}{{ Shipping.addr01 }}{{ Shipping.addr02 }}<br />
+						{{ 'TEL'|trans }} {{ Shipping.phone_number }}
+					</div>
+					<div class="shipping_delivery">
+              {% set deliveryType = '配送のみ' %}
+              {% set break = false %}
+              {% for orderItem in Shipping.productOrderItems %}
+                  {% if (orderItem.Product.hl_flag == 1) and (orderItem.ProductClass.assembly_time is not null) and orderItem.ProductClass.assembly_time > 0 %}
+                      {% set deliveryType = '組立付き配送' %}
+                      {% set break = true %}
+                  {% endif %}
+              {% endfor %}
+                  {{ '配送方法'|trans }} :{{ deliveryType }}<br />
+                  {{ 'お届け日'|trans }} :{{ Shipping.shipping_delivery_date|date_day_with_weekday|default('指定なし'|trans) }}<br />
+                  {{ 'お届け時間'|trans }} :{{ Shipping.shipping_delivery_time|default('指定なし'|trans) }}<br />
+					</div>
+				</div>
+				<div class="right">
+					<div class="shipping_list">
+						{% for orderItem in Shipping.productOrderItems %}
+							<div class="shipping_product_name">{{ orderItem.productName }}</div>
+							<div class="shipping_product_category">
+								{% if orderItem.ProductClass is not null %}
+									{% if orderItem.ProductClass.ClassCategory1 is not null %}
+										{{ orderItem.productClass.classCategory1.className.name }}：{{ orderItem.productClass.classCategory1 }}
+									{% endif %}
+									{% if orderItem.ProductClass.ClassCategory2 %}
+										<br />{{ orderItem.productClass.classCategory2.className.name }}：{{ orderItem.productClass.classCategory2 }}
+									{% endif %}
+								{% endif %}
+							</div>
+							<div class="shipping_product_price">
+								{{ orderItem.price_inc_tax|price }} × {{ orderItem.quantity|number_format }}
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		{% endfor %}
+	</div>
+	
+	<div class="box">
+		<div class="title_bar">{{ 'お支払情報'|trans }}</div>
+		<div id="payment_method">{{ 'お支払方法'|trans }}：{{ Order.PaymentMethod }}</div>
+	</div>
+
+  <div class="box" id="info_footer">
+    <div>お問い合わせ先</div>
+
+    <div>
+      <p>TEL : 03-3969-0836</p>
+      <p>・受注時間／月曜日～金曜日　10:00～17:00</p>
+      <p>・定休日／土曜日 ・日曜日 ・祝日</p>
+    </div>
+
+    <div>
+      ※商品並びに発送には細心の注意を払っておりますが、<br/>
+    　万が一、事故品、欠品等ございましたら商品の到着から5日以内に必ずお知らせください。
+    </div>
+
+  </div>
+
+
+{% endblock %}
+

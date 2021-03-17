@@ -2430,22 +2430,6 @@ class EccubeProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundl
                             }
                             not_admin_product_category_export:
 
-                            // admin_product_category_csv_import
-                            if ('/blogOJT/product/category_csv_upload' === $pathinfo) {
-                                $ret = array (  '_controller' => 'Eccube\\Controller\\Admin\\Product\\CsvImportController::csvCategory',  '_route' => 'admin_product_category_csv_import',);
-                                $requiredSchemes = array (  'https' => 0,  'http' => 1,);
-                                if (!isset($requiredSchemes[$context->getScheme()])) {
-                                    if ('GET' !== $canonicalMethod) {
-                                        goto not_admin_product_category_csv_import;
-                                    }
-
-                                    return array_replace($ret, $this->redirect($rawPathinfo, 'admin_product_category_csv_import', key($requiredSchemes)));
-                                }
-
-                                return $ret;
-                            }
-                            not_admin_product_category_csv_import:
-
                         }
 
                         elseif (0 === strpos($pathinfo, '/blogOJT/product/class_category')) {
@@ -2633,41 +2617,9 @@ class EccubeProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundl
 
                         }
 
-                        // admin_product_csv_template
-                        if (0 === strpos($pathinfo, '/blogOJT/product/csv_template') && preg_match('#^/blogOJT/product/csv_template/(?P<type>\\w+)$#sD', $pathinfo, $matches)) {
-                            $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'admin_product_csv_template']), array (  '_controller' => 'Eccube\\Controller\\Admin\\Product\\CsvImportController::csvTemplate',));
-                            $requiredSchemes = array (  'https' => 0,  'http' => 1,);
-                            if (!isset($requiredSchemes[$context->getScheme()])) {
-                                if ('GET' !== $canonicalMethod) {
-                                    goto not_admin_product_csv_template;
-                                }
-
-                                return array_replace($ret, $this->redirect($rawPathinfo, 'admin_product_csv_template', key($requiredSchemes)));
-                            }
-
-                            return $ret;
-                        }
-                        not_admin_product_csv_template:
-
                     }
 
-                    // admin_product_csv_import
-                    if ('/blogOJT/product/product_csv_upload' === $pathinfo) {
-                        $ret = array (  '_controller' => 'Eccube\\Controller\\Admin\\Product\\CsvImportController::csvProduct',  '_route' => 'admin_product_csv_import',);
-                        $requiredSchemes = array (  'https' => 0,  'http' => 1,);
-                        if (!isset($requiredSchemes[$context->getScheme()])) {
-                            if ('GET' !== $canonicalMethod) {
-                                goto not_admin_product_csv_import;
-                            }
-
-                            return array_replace($ret, $this->redirect($rawPathinfo, 'admin_product_csv_import', key($requiredSchemes)));
-                        }
-
-                        return $ret;
-                    }
-                    not_admin_product_csv_import:
-
-                    if (0 === strpos($pathinfo, '/blogOJT/product/product/class')) {
+                    elseif (0 === strpos($pathinfo, '/blogOJT/product/product/class')) {
                         // admin_product_product_class
                         if (preg_match('#^/blogOJT/product/product/class/(?P<id>\\d+)$#sD', $pathinfo, $matches)) {
                             $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'admin_product_product_class']), array (  '_controller' => 'Eccube\\Controller\\Admin\\Product\\ProductClassController::index',));
@@ -2852,30 +2804,81 @@ class EccubeProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundl
                         }
                         not_admin_product_product_display:
 
+                        // admin_product_csv_import
+                        if ('/blogOJT/product/product_csv_upload' === $pathinfo) {
+                            $ret = array (  '_controller' => 'Customize\\Controller\\Admin\\Product\\CsvImportController::csvProduct',  '_route' => 'admin_product_csv_import',);
+                            $requiredSchemes = array (  'https' => 0,  'http' => 1,);
+                            if (!isset($requiredSchemes[$context->getScheme()])) {
+                                if ('GET' !== $canonicalMethod) {
+                                    goto not_admin_product_csv_import;
+                                }
+
+                                return array_replace($ret, $this->redirect($rawPathinfo, 'admin_product_csv_import', key($requiredSchemes)));
+                            }
+
+                            return $ret;
+                        }
+                        not_admin_product_csv_import:
+
                     }
 
-                    // admin_product_classes_load
-                    if (0 === strpos($pathinfo, '/blogOJT/product/classes') && preg_match('#^/blogOJT/product/classes/(?P<id>\\d+)/load$#sD', $pathinfo, $matches)) {
-                        $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'admin_product_classes_load']), array (  '_controller' => 'Eccube\\Controller\\Admin\\Product\\ProductController::loadProductClasses',));
-                        $requiredSchemes = array (  'https' => 0,  'http' => 1,);
-                        $hasRequiredScheme = isset($requiredSchemes[$context->getScheme()]);
-                        if (!in_array($canonicalMethod, ['GET'])) {
-                            if ($hasRequiredScheme) {
-                                $allow = array_merge($allow, ['GET']);
-                            }
-                            goto not_admin_product_classes_load;
-                        }
-                        if (!$hasRequiredScheme) {
-                            if ('GET' !== $canonicalMethod) {
+                    elseif (0 === strpos($pathinfo, '/blogOJT/product/c')) {
+                        // admin_product_classes_load
+                        if (0 === strpos($pathinfo, '/blogOJT/product/classes') && preg_match('#^/blogOJT/product/classes/(?P<id>\\d+)/load$#sD', $pathinfo, $matches)) {
+                            $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'admin_product_classes_load']), array (  '_controller' => 'Eccube\\Controller\\Admin\\Product\\ProductController::loadProductClasses',));
+                            $requiredSchemes = array (  'https' => 0,  'http' => 1,);
+                            $hasRequiredScheme = isset($requiredSchemes[$context->getScheme()]);
+                            if (!in_array($canonicalMethod, ['GET'])) {
+                                if ($hasRequiredScheme) {
+                                    $allow = array_merge($allow, ['GET']);
+                                }
                                 goto not_admin_product_classes_load;
                             }
+                            if (!$hasRequiredScheme) {
+                                if ('GET' !== $canonicalMethod) {
+                                    goto not_admin_product_classes_load;
+                                }
 
-                            return array_replace($ret, $this->redirect($rawPathinfo, 'admin_product_classes_load', key($requiredSchemes)));
+                                return array_replace($ret, $this->redirect($rawPathinfo, 'admin_product_classes_load', key($requiredSchemes)));
+                            }
+
+                            return $ret;
                         }
+                        not_admin_product_classes_load:
 
-                        return $ret;
+                        // admin_product_category_csv_import
+                        if ('/blogOJT/product/category_csv_upload' === $pathinfo) {
+                            $ret = array (  '_controller' => 'Customize\\Controller\\Admin\\Product\\CsvImportController::csvCategory',  '_route' => 'admin_product_category_csv_import',);
+                            $requiredSchemes = array (  'https' => 0,  'http' => 1,);
+                            if (!isset($requiredSchemes[$context->getScheme()])) {
+                                if ('GET' !== $canonicalMethod) {
+                                    goto not_admin_product_category_csv_import;
+                                }
+
+                                return array_replace($ret, $this->redirect($rawPathinfo, 'admin_product_category_csv_import', key($requiredSchemes)));
+                            }
+
+                            return $ret;
+                        }
+                        not_admin_product_category_csv_import:
+
+                        // admin_product_csv_template
+                        if (0 === strpos($pathinfo, '/blogOJT/product/csv_template') && preg_match('#^/blogOJT/product/csv_template/(?P<type>\\w+)$#sD', $pathinfo, $matches)) {
+                            $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'admin_product_csv_template']), array (  '_controller' => 'Customize\\Controller\\Admin\\Product\\CsvImportController::csvTemplate',));
+                            $requiredSchemes = array (  'https' => 0,  'http' => 1,);
+                            if (!isset($requiredSchemes[$context->getScheme()])) {
+                                if ('GET' !== $canonicalMethod) {
+                                    goto not_admin_product_csv_template;
+                                }
+
+                                return array_replace($ret, $this->redirect($rawPathinfo, 'admin_product_csv_template', key($requiredSchemes)));
+                            }
+
+                            return $ret;
+                        }
+                        not_admin_product_csv_template:
+
                     }
-                    not_admin_product_classes_load:
 
                     // admin_product_export
                     if ('/blogOJT/product/export' === $pathinfo) {
@@ -4056,6 +4059,29 @@ class EccubeProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundl
                 return $ret;
             }
             not_product_add_cart:
+
+            // Receipt_Page
+            if (0 === strpos($pathinfo, '/products/receipt') && preg_match('#^/products/receipt/(?P<id>\\d+)$#sD', $pathinfo, $matches)) {
+                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'Receipt_Page']), array (  '_controller' => 'Customize\\Controller\\ReceiptController::showReceipt',));
+                $requiredSchemes = array (  'https' => 0,  'http' => 1,);
+                $hasRequiredScheme = isset($requiredSchemes[$context->getScheme()]);
+                if (!in_array($canonicalMethod, ['GET'])) {
+                    if ($hasRequiredScheme) {
+                        $allow = array_merge($allow, ['GET']);
+                    }
+                    goto not_Receipt_Page;
+                }
+                if (!$hasRequiredScheme) {
+                    if ('GET' !== $canonicalMethod) {
+                        goto not_Receipt_Page;
+                    }
+
+                    return array_replace($ret, $this->redirect($rawPathinfo, 'Receipt_Page', key($requiredSchemes)));
+                }
+
+                return $ret;
+            }
+            not_Receipt_Page:
 
         }
 

@@ -64,10 +64,10 @@ class Product extends \Eccube\Entity\Product implements \Doctrine\ORM\Proxy\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . '_calc', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stockFinds', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stocks', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stockUnlimiteds', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price01', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price02', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price01IncTaxs', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price02IncTaxs', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'codes', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'classCategories1', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'classCategories2', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'className1', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'className2', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'id', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'name', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'note', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'description_list', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'description_detail', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'search_word', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'free_area', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'create_date', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'update_date', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductCategories', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductClasses', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductImage', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductTag', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'CustomerFavoriteProducts', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'Creator', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'Status'];
+            return ['__isInitialized__', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . '_calc', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stockFinds', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stocks', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stockUnlimiteds', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price01', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price02', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price01IncTaxs', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price02IncTaxs', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'codes', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'classCategories1', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'classCategories2', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'className1', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'className2', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'id', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'name', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'note', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'description_list', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'description_detail', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'search_word', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'free_area', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'create_date', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'update_date', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductCategories', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductClasses', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductImage', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductTag', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'CustomerFavoriteProducts', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'Creator', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'Status', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'delivery_date'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . '_calc', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stockFinds', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stocks', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stockUnlimiteds', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price01', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price02', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price01IncTaxs', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price02IncTaxs', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'codes', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'classCategories1', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'classCategories2', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'className1', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'className2', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'id', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'name', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'note', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'description_list', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'description_detail', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'search_word', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'free_area', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'create_date', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'update_date', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductCategories', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductClasses', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductImage', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductTag', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'CustomerFavoriteProducts', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'Creator', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'Status'];
+        return ['__isInitialized__', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . '_calc', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stockFinds', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stocks', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'stockUnlimiteds', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price01', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price02', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price01IncTaxs', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'price02IncTaxs', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'codes', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'classCategories1', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'classCategories2', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'className1', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'className2', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'id', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'name', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'note', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'description_list', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'description_detail', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'search_word', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'free_area', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'create_date', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'update_date', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductCategories', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductClasses', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductImage', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'ProductTag', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'CustomerFavoriteProducts', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'Creator', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'Status', '' . "\0" . 'Eccube\\Entity\\Product' . "\0" . 'delivery_date'];
     }
 
     /**
@@ -486,10 +486,21 @@ class Product extends \Eccube\Entity\Product implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
+    public function setID($name)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setID', [$name]);
+
+        return parent::setID($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
-            return (int)  parent::getId();
+            return  parent::getId();
         }
 
 
@@ -1057,6 +1068,28 @@ class Product extends \Eccube\Entity\Product implements \Doctrine\ORM\Proxy\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityIdentifierAsArray', [$Entity]);
 
         return parent::getEntityIdentifierAsArray($Entity);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDeliveryDate()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDeliveryDate', []);
+
+        return parent::getDeliveryDate();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDeliveryDate($delivery_date)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDeliveryDate', [$delivery_date]);
+
+        return parent::setDeliveryDate($delivery_date);
     }
 
 }

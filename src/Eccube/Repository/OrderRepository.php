@@ -369,7 +369,8 @@ class OrderRepository extends AbstractRepository
 
         return $this->queries->customize(QueryKey::ORDER_SEARCH_BY_CUSTOMER, $qb, ['customer' => $Customer]);
     }
-
+    
+  
     /**
      * ステータスごとの受注件数を取得する.
      *

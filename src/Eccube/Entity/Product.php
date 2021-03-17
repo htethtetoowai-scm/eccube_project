@@ -422,9 +422,9 @@ if (!class_exists('\Eccube\Entity\Product')) {
         }
 
         /**
-         * @var integer
+         * @var string
          *
-         * @ORM\Column(name="id", type="integer", options={"unsigned":true})
+         * @ORM\Column(name="id", type="string", options={"unsigned":true})
          * @ORM\Id
          * @ORM\GeneratedValue(strategy="IDENTITY")
          */
@@ -600,11 +600,24 @@ if (!class_exists('\Eccube\Entity\Product')) {
 
             return $this;
         }
+        /**
+         * Set id.
+         *
+         * @param string $id
+         *
+         * @return Product
+         */
+        public function setID($name)
+        {
+            $this->id = $id;
+
+            return $this;
+        }
 
         /**
          * Get id.
          *
-         * @return int
+         * @return string
          */
         public function getId()
         {
